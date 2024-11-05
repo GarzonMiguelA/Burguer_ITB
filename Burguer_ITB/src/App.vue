@@ -5,10 +5,10 @@
   import Pedidos from './components/Pedidos.vue';
 
 
-  // Definimos la moneda inicial que se usará:
+  // Definimos moneda inicial que se usará:
   const currency = ref('$');
 
-  // Definimos un array de productos disponibles con nombre y precio
+  // Creamos el array de productos con name y price
   const productos = ref([
     { name: "Hamburger 🍔.", price: 5 },
     { name: "Cheeseburger 🧀", price: 6 },
@@ -27,18 +27,18 @@
   provide('currency', currency);
 
 
-  // Función para manejar cuando se añade un producto al carrito
-  function handleProductAdded(productName) {
-      // Añadimos el nombre del producto al array de productos comprados  
-      productosComprados.value.push(productName); // Añadir el nombre del producto al array
-      // Construir el mensaje de alerta con todos los productos
+  // Creamos la función para manejar cuando se añade un producto al carrito
+  function manejarProductoAñadido(nombreProducto) {
+      // Añadimos nombre del producto al array:  
+      productosComprados.value.push(nombreProducto); // Añadir el nombre del producto al array
+      // Construimos mensaje de alerta:
       const alertMessage = `${productosComprados.value.join(', ')}`;
-      // Mostramos el mensaje de alerta
+      // Mostramos mensaje:
       alert(alertMessage);  
   }
 
-  function handleOrderPlaced() {
-      // Mostramos un mensaje de alerta indicando que el pedido ha sido realizado
+  function manejarPedidoRealizado() {
+      // Mostramos mensaje indicando que el pedido ha sido realizado:
       alert('Tu pedido ha sido realizado');
   }
 </script>
@@ -46,7 +46,7 @@
 <template>
   <h1>{{ nombrePedido }}</h1>
   <input v-model="nombrePedido" type="text" placeholder="Escribe tu nombre de pedido">
-  <button @click="handleOrderPlaced">Realizar pedido</button>
+  <button @click="manejarPedidoRealizado">Realizar pedido</button>
   
   <label>
     Currency
@@ -56,7 +56,7 @@
     </select>
   </label>
 
-  <Pedidos @product-added="handleProductAdded" />
+  <Pedidos @product-added="manejarProductoAñadido" />
 </template>
 
 
