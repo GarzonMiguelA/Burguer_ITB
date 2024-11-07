@@ -3,14 +3,14 @@
   import { ref, provide } from 'vue';
   // Importamos componente Pedidos que lo usare para mostrar los productos:
   import Pedidos from './components/Pedidos.vue';
-
+  
 
   // Definimos moneda inicial que se usará:
   const currency = ref('$');
 
   // Creamos el array de productos con name y price
   const productos = ref([
-    { name: "Hamburger 🍔.", price: 5 },
+    { name: "Hamburger 🍔", price: 5 },
     { name: "Cheeseburger 🧀", price: 6 },
     { name: "Impossible Burger 🥕", price: 7 },
     { name: "Fries 🍟", price: 2 }
@@ -56,39 +56,81 @@
     </select>
   </label>
 
-  <Pedidos @product-added="manejarProductoAñadido" />
+  <div class="pedidos-container">
+    <Pedidos @product-added="manejarProductoAñadido" />
+  </div>
 </template>
 
 
-
-
-
-
 <style scoped>
-header {
-  line-height: 1.5;
+h1 {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 5rem;
 }
 
-.logo {
+input[type="text"] {
   display: block;
-  margin: 0 auto 2rem;
+  width: 100%;
+  max-width: 500px;
+  margin: 1.5rem auto;
+  padding: 0.8rem;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+input[type="text"]:focus {
+  border-color: #000000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  outline: none;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+button {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.8rem 1.5rem;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+button:hover {
+  background-color: #b4b4b4;
+  transform: scale(1.10);
+}
+
+label {
+  display: block;
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+select {
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.pedidos-container {
+  display: grid;
+  justify-content: center; 
+  align-items: center;     
+  margin-top: 2rem;
+  padding: 1rem;
+  width: 100%;
+  gap: 30px; 
 }
 </style>
